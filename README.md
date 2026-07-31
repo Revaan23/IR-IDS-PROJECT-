@@ -8,11 +8,6 @@
 
 ### Using Apache Kafka • Docker • Machine Learning • Explainable AI • Threat Intelligence
 
-<br>
-
-<img src="docs/architecture.png" width="100%" alt="IR-IDS System Architecture">
-
-<br>
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
 ![Apache Kafka](https://img.shields.io/badge/Apache-Kafka-orange?style=for-the-badge&logo=apachekafka)
