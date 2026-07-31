@@ -1,8 +1,7 @@
-<div align="center">
 
-# 🛡️ IR-IDS
 
-## Intelligent Real-Time Intrusion Detection System
+# 🛡️ IR-IDS 
+
 
 ### A Network-Based Intrusion Detection System Based on Causal Feature Selection and Explainable Model Optimization
 
