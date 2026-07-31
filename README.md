@@ -1,5 +1,5 @@
 # 🛡️ IR-IDS
-## Intelligent Real-Time Intrusion Detection System using Apache Kafka and Machine Learning
+## A NETWORK BASED INTRUSION DETECTION SYSTEM BASED ON CAUSAL FEATURE SELECTION AND OPTIMISED EXPLAINABILITY
 
 <p align="center">
 
