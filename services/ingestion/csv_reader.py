@@ -48,9 +48,7 @@ class CSVReader:
         if not csv_files:
 
             raise FileNotFoundError(
-
                 f"No CSV files found in\n{self.dataset_folder}"
-
             )
 
         return csv_files
@@ -74,22 +72,14 @@ class CSVReader:
 
             resume_chunk = checkpoint.get("chunk", 0)
 
-            self.logger.info(
-
-                "Checkpoint Found"
-
-            )
+            self.logger.info("Checkpoint Found")
 
             self.logger.info(
-
                 f"Resuming File : {resume_file}"
-
             )
 
             self.logger.info(
-
                 f"Resume Chunk  : {resume_chunk}"
-
             )
 
         resume_mode = resume_file is not None
@@ -103,7 +93,6 @@ class CSVReader:
             if resume_mode:
 
                 if file_name != resume_file:
-
                     continue
 
                 resume_mode = False
@@ -111,56 +100,41 @@ class CSVReader:
             print(f"\nReading : {file_name}")
 
             self.logger.info(
-
                 f"Reading {file_name}"
-
             )
 
             try:
 
                 chunk_iterator = pd.read_csv(
-
                     csv_file,
-
                     chunksize=CHUNK_SIZE,
-
                     low_memory=False,
-
                     encoding=CSV_ENCODING
-
                 )
 
             except Exception as e:
 
                 self.logger.error(str(e))
-
                 continue
 
             for chunk_number, chunk in enumerate(chunk_iterator):
 
                 if (
-
-                    file_name == resume_file and
-
-                    chunk_number < resume_chunk
-
+                    file_name == resume_file
+                    and chunk_number < resume_chunk
                 ):
-
                     continue
 
-                chunk.fillna(
+                # ==================================================
+                # Replace NaN / NaT with Python None
+                # (Compatible with Pandas 2.x / 3.x)
+                # ==================================================
 
-                    value=None,
+                chunk = chunk.where(pd.notna(chunk), None)
 
-                    inplace=True
-
-                )
-
-                # ----------------------------------------------
-
+                # ==================================================
                 # Faster than to_dict(orient="records")
-
-                # ----------------------------------------------
+                # ==================================================
 
                 columns = chunk.columns.tolist()
 
@@ -169,31 +143,19 @@ class CSVReader:
                 for row_number, row_values in enumerate(values):
 
                     row = dict(
-
                         zip(
-
                             columns,
-
                             row_values
-
                         )
-
                     )
 
                     yield (
-
                         file_name,
-
                         chunk_number,
-
                         row_number,
-
                         row
-
                     )
 
         self.logger.info(
-
             "CSV Streaming Finished"
-
         )
