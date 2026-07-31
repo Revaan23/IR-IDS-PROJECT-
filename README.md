@@ -1,9 +1,7 @@
 # 🛡️ IR-IDS
 ## A NETWORK BASED INTRUSION DETECTION SYSTEM BASED ON CAUSAL FEATURE AND EXPLAINABLE MODEL OPTIMIZATION 
+[USING APACHE KAFKA AND DOCKER]
 
-<p align="center">
-  <img src="docs/architecture.png" width="100%" alt="IR-IDS Architecture">
-</p>
 
 <p align="center">
 
